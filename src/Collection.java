@@ -35,7 +35,7 @@ public class Collection {
         return false;
     }
 
-
+    //
     public boolean remove(Album album) {
         for(int i = 0; i < this.albums.length; i++){
             if(albums[i].title == album.title && albums[i].astist == album.artist){
