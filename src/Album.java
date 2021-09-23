@@ -24,5 +24,12 @@ public class Album {
 
     //Jason
     @Override
-    public String toString() { }
+    public String toString() {
+        if (this.isAvailable == true){
+            return title + "::" + artist + "::" genre + "::" + releaseDate + "::" + "is available";
+        }
+        else{
+            return title + "::" + artist + "::" genre + "::" + releaseDate + "::" + "not available";
+        }
+    }
 }
