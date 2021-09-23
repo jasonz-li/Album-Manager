@@ -6,10 +6,20 @@ public class Album {
     private boolean isAvailable;
 
 
+    enum Genre {
+        Classical, Country, Jazz, Pop, Unknown
+    }
+
+
     //John
     @Override
-    public boolean equals(Object obj) { }
-
+    public boolean equals(Object obj) {
+        Album album1 = (Album) obj;
+        if(this.title == album1.title && this.artist == album1.artist){
+            return true;
+        }
+        return false;
+    }
 
 
     //Jason
