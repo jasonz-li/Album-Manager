@@ -40,7 +40,7 @@ public class Collection {
      * @return
      */
     public boolean add(Album album) {
-        if(numALbums < albums.length) {
+        if(numAlbums < albums.length) {
             this.album[numAlbums] = album;
             this.numAlbums++;
             return true;
@@ -68,7 +68,7 @@ public class Collection {
     // set to not available
     public boolean lendingOut(Album album) {
         for (int i = 0; i < this.numAlbums; i++){
-            if (this.albums[i] == album){
+            if (this.albums[i].equals(album)){
                 this.albums[i].isAvailable = false;
                 break;
             }
@@ -79,7 +79,7 @@ public class Collection {
     //set to available
     public boolean returnAlbum(Album album) {
         for (int i = 0; i < this.numAlbums; i++){
-            if (this.albums[i] == album){
+            if (this.albums[i].equals(album)){
                 this.albums[i].isAvailable = true;
                 break;
             }
@@ -111,10 +111,10 @@ public class Collection {
 
         for (int i = 0; i < albumsLength-1; i++)
         {
-            int min_idex = i;
+            int min_idx = i;
             for (int j = i + 1; j < albumsLength; j++)
                 if (albums[i]releaseDate.compareTo(albums[j].releaseDate) == true){
-                    min_idex = j;
+                    min_idx = j;
                 }
 
             int tempVar = albums[min_idx];
@@ -133,7 +133,7 @@ public class Collection {
 
         for (int i = 0; i < albumsLength-1; i++)
         {
-            int min_idex = i;
+            int min_idx = i;
             for (int j = i + 1; j < albumsLength; j++)
                 if (albums[i].genre.toString().compareTo(albums[j].genre.toString()) >= 0){
                     min_idex = j;
