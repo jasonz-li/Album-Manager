@@ -2,9 +2,10 @@ public class CollectionManager {
     public void run(){
         public static void main(String args[]){
             Scanner scanner = new Scanner(System.in).useDelimiter("\\s*,\\s*");
+            String input = scanner.next();
 
             while (true){
-                if (args[0] == "A"){
+                if (input == "A"){
 
                 }
                 else if (args[0] == "D"){
