@@ -9,6 +9,25 @@ public class Collection {
         numAlbums = 0;
     }
 
+    public Album[] getCollection() {
+        return albums;
+    }
+
+    public int getNumAlbums() {
+        return numAlbums;
+    }
+
+    public Album findAlbum(String title, String artist) {
+        Album wantedAlbum = new Album();
+        wantedAlbum.setArtist(artist);
+        wantedAlbum.setTitle(title);
+        for (int i = 0; i < numAlbums; i++) {
+            if (albums[i].equals(wantedAlbum)) {
+                return albums[i];
+            }
+        }
+        return null;
+    }
     //Jason
 
     //find the album index, or return NOT_FOUND
@@ -18,7 +37,7 @@ public class Collection {
                 return i;
             }
         }
-        return NOT_FOUND;
+        return -1;
     }
 
     //increase the capacity of the array list by 4
@@ -41,11 +60,11 @@ public class Collection {
      */
     public boolean add(Album album) {
         if(numAlbums < albums.length) {
-            this.album[numAlbums] = album;
+            this.albums[numAlbums] = album;
             this.numAlbums++;
             return true;
         }
-        else if(numAlbums = albums.length){
+        else if(numAlbums == albums.length){
             this.grow();
             this.add(album);
         }
@@ -69,7 +88,7 @@ public class Collection {
     public boolean lendingOut(Album album) {
         for (int i = 0; i < this.numAlbums; i++){
             if (this.albums[i].equals(album)){
-                this.albums[i].isAvailable = false;
+                albums[i].setAvailability(false);
                 break;
             }
         }
@@ -80,7 +99,7 @@ public class Collection {
     public boolean returnAlbum(Album album) {
         for (int i = 0; i < this.numAlbums; i++){
             if (this.albums[i].equals(album)){
-                this.albums[i].isAvailable = true;
+                this.albums[i].setAvailability(true);
                 break;
             }
         }
@@ -114,8 +133,8 @@ public class Collection {
             int min_idx = i;
             for (int j = i + 1; j < albumsLength; j++)
                 if (albums[i]releaseDate.compareTo(albums[j].releaseDate) == true){
-                    min_idx = j;
-                }
+            min_idx = j;
+        }
 
             int tempVar = albums[min_idx];
             albums[min_idx] = albums[i];
