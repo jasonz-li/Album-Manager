@@ -10,12 +10,12 @@ public class Date implements Comparable<Date> {
     //take “mm/dd/yyyy” and create a Date object
     public Date(String date) {
         Date inputDate = new Date();
-        inputDate.month = date.substring(0, 2);
-        inputDate.day = date.substring(3, 5);  //******can i do this? is this right?
-        inputDate.year = date.substring(6);
+        inputDate.month = Integer.parseInt(date.substring(0, 2));
+        inputDate.day = Integer.parseInt(date.substring(3, 5));  //******can i do this? is this right?
+        inputDate.year = Integer.parseInt(date.substring(6));
     }
 
-    // create an object with today’s date (see Calendar class)
+    // create an object with todayâ€™s date (see Calendar class)
     public Date() {
         Calendar getToday = Calendar.getInstance();
         Date today = new Date();
@@ -27,7 +27,7 @@ public class Date implements Comparable<Date> {
 
     //John
     public boolean isValid() {
-        public static final int THE_EIGHTIES = 1980;
+        final int THE_EIGHTIES = 1980;
         public static final int TWENTY_EIGHT_DAYS = 28;
         public static final int TWENTY_NINE_DAYS = 29;
         public static final int THIRTY_DAYS = 30;
@@ -57,7 +57,7 @@ public class Date implements Comparable<Date> {
         if((this.day <= TWENTY_EIGHT_DAYS && this.month == FEB)
                 || (LEAP_YEAR == true && this.day <= TWENTY_NINE_DAYS && this.month == FEB)) return true;
         //Checks months with 30 days
-        if(this.day <= THIRTY_DAYS && (this.month == APR || this.month = JUN || this.month = SEP || this.month = NOV) )
+        if(this.day <= THIRTY_DAYS && (this.month == APR || this.month == JUN || this.month = SEP || this.month = NOV) )
             return true;
         //Checks months with 31 days
         if(this.day <= THIRTY_ONE_DAYS && (this.month == JAN || this.month = MAR || this.month = MAY
