@@ -14,7 +14,8 @@ public class Album {
     //John
     @Override
     public boolean equals(Object obj) {
-        Album album1 = (Album) obj;
+        //Album album1 = (Album) obj; doesn't work for some reason
+        Album album1 = Album.cast(obj);
         if(this.title == album1.title && this.artist == album1.artist){
             return true;
         }
@@ -26,10 +27,10 @@ public class Album {
     @Override
     public String toString() {
         if (this.isAvailable == true){
-            return title + "::" + artist + "::" genre + "::" + releaseDate + "::" + "is available";
+            return title + "::" + artist + "::" + genre + "::" + releaseDate + "::" + "is available";
         }
         else{
-            return title + "::" + artist + "::" genre + "::" + releaseDate + "::" + "not available";
+            return title + "::" + artist + "::" + genre + "::" + releaseDate + "::" + "not available";
         }
     }
 }
