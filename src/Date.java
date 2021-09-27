@@ -1,36 +1,32 @@
 import java.util.Calendar;
 
 public class Date implements Comparable<Date> {
-	private int year;
-	private int month;
-	private int day;
+    private int year;
+    private int month;
+    private int day;
 
-	/**
-	 * Takes the string "mm/dd/yyyy" and creates a Date object.
-	 * 
-	 * @param date input date
-	 */
-	public Date(String date) {
-		Date inputDate = new Date();
-		inputDate.month = Integer.parseInt(date.substring(0, 2));
-		inputDate.day = Integer.parseInt(date.substring(3, 5)); // ******can i do this? is this right?
-		inputDate.year = Integer.parseInt(date.substring(6));
-	}
+    //Jason
 
-	/**
-	 * Creates an object with today's date.
-	 */
-	public Date() {
-		Calendar getToday = Calendar.getInstance();
-		Date today = new Date();
-		today.year = getToday.get(getToday.YEAR);
-		today.month = getToday.get(getToday.MONTH + 1); // getToday.MONTH returns month as int. January is int 0, +1 to
-														// line up with normal month numbers.
-		today.day = getToday.get(getToday.DATE);
-	}
+    //take “mm/dd/yyyy” and create a Date object
+    public Date(String date) {
+        Date inputDate = new Date();
+        inputDate.month = Integer.parseInt(date.substring(0, 2));
+        inputDate.day = Integer.parseInt(date.substring(3, 5));  //******can i do this? is this right?
+        inputDate.year = Integer.parseInt(date.substring(6));
+    }
 
-	// John
-	public boolean isValid() {
+    // create an object with todayâ€™s date (see Calendar class)
+    public Date() {
+        Calendar getToday = Calendar.getInstance();
+        Date today = new Date();
+        today.year = getToday.get(getToday.YEAR);
+        today.month = getToday.get(getToday.MONTH + 1); //getToday.MONTH returns month as int. January is int 0, +1 to line up with normal month numbers.
+        today.day = getToday.get(getToday.DATE);
+    }
+
+
+    //John
+    public boolean isValid() {
         final int THE_EIGHTIES = 1980;
         public static final int TWENTY_EIGHT_DAYS = 28;
         public static final int TWENTY_NINE_DAYS = 29;
@@ -70,13 +66,14 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
-	// if the inputted date is older(smaller numer) than the date the function is
-	// called on, returns true.
-	@Override
-	public int compareTo(Date date) {
-		if (this.year > date.year && this.month > date.month && this.day > date.day) {
-			return true;
-		}
-		return false;
-	}
+    //if the inputted date is older(smaller numer) than the date the function is called on, returns true.
+    @Override
+    public int compareTo(Date date) {
+        if ( this.year > date.year
+                && this.month > date.month
+                && this.day > date.day){
+            return true;
+        }
+        return false;
+    }
 }

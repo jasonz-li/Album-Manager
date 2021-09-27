@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class CollectionManager {
     public void run(){
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in).useDelimiter("\\s*,\\s*");
         Collection collection = new Collection();
+        System.out.println(collection.getCollection().length);
 
         while (true){
             String input = scanner.next();
-            if (input.contentEquals("Q")) {
+            if (input == "Q") {
                 System.out.println("Collection Manager Terminated.");
                 break;
             }
