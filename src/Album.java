@@ -5,18 +5,23 @@ public class Album {
     private Date releaseDate;
     private boolean isAvailable;
 
+    public Album(){}
 
-    enum Genre {
-        Classical, Country, Jazz, Pop, Unknown
+    public Album(String title, String artist, String genre, String releaseDate){
+        this.title = title;
+        this.artist = artist;
+        this.genre = Genre.valueOf(genre);
+        this.releaseDate = new Date(releaseDate);
+        this.isAvailable = true;
+
+
     }
-
-
     //John
     @Override
     public boolean equals(Object obj) {
         //Album album1 = (Album) obj; doesn't work for some reason
-        Album album1 = Album.cast(obj);
-        if(this.title == album1.title && this.artist == album1.artist){
+        Album album1 = Album.class.cast(obj);
+        if(this.title.equals(album1.title) && this.artist.equals(album1.artist)){
             return true;
         }
         return false;
@@ -26,7 +31,7 @@ public class Album {
     //Jason
     @Override
     public String toString() {
-        if (this.isAvailable == true){
+        if (this.isAvailable){
             return title + "::" + artist + "::" + genre + "::" + releaseDate + "::" + "is available";
         }
         else{
@@ -38,21 +43,18 @@ public class Album {
      Gets title of album.
      @return title
      */
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() {return title;}
+
     /**
-     Sets title of album.
-     @param Name of the title
+     * Sets title of album.
+     * @param titleName is the name of the title
      */
-    public void setTitle(String titleName) {
-        this.title = titleName;
-    }
+    public void setTitle(String titleName) {this.title = titleName;}
     /**
      Gets artist of album.
      @return artist.
      */
-    public String getArist() {
+    public String getArtist() {
         return artist;
     }
 
