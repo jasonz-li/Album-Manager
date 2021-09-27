@@ -1,36 +1,19 @@
 public class Collection {
 
     private Album[] albums;
-    private int numAlbums; //number of albums currently in the collection
+    private int numAlbums; // number of albums currently in the collection
 
-
-    public Collection(){
+    public Collection() {
         albums = new Album[4];
         numAlbums = 0;
     }
 
-    public Album[] getCollection() {
-        return albums;
-    }
-
-    public int getNumAlbums() {
-        return numAlbums;
-    }
-
-    public Album findAlbum(String title, String artist) {
-        Album wantedAlbum = new Album();
-        wantedAlbum.setArtist(artist);
-        wantedAlbum.setTitle(title);
-        for (int i = 0; i < numAlbums; i++) {
-            if (albums[i].equals(wantedAlbum)) {
-                return albums[i];
-            }
-        }
-        return null;
-    }
-    //Jason
-
-    //find the album index, or return NOT_FOUND
+    /**
+     * Finds album index in the collection of albums.
+     *
+     * @param album target album that wants to be found.
+     * @return index of album, otherwise -1 if not found.
+     */
     private int find(Album album) {
         for (int i = 0; i < this.numAlbums; i++) {
             if (this.albums[i] == album) {
@@ -40,31 +23,36 @@ public class Collection {
         return -1;
     }
 
-    //increase the capacity of the array list by 4
+    /**
+     * Finds album index in the collection of albums.
+     *
+     * @param album target album that wants to be found.
+     * @return index of album, otherwise -1 if not found.
+     */
     private void grow() {
         Album[] newCollection = new Album[this.numAlbums + 4];
-        for (int i = 0; i < this.numAlbums; i++){
+        for (int i = 0; i < this.numAlbums; i++) {
             newCollection[i] = this.albums[i];
         }
         this.albums = newCollection;
     }
 
-    //John
+    // John
     /**
-     * Attempts to add an album and calls grow when its full:
-     * If the number of albums is less than the array length, the album is added,
-     * or if the number of albums is equal to the array length, it calls grow()
-     * and recursively attempts to add the album again.
+     * Attempts to add an album and calls grow when its full: If the number of
+     * albums is less than the array length, the album is added, or if the number of
+     * albums is equal to the array length, it calls grow() and recursively attempts
+     * to add the album again.
+     *
      * @param album
      * @return
      */
     public boolean add(Album album) {
-        if(numAlbums < albums.length) {
+        if (numAlbums < albums.length) {
             this.albums[numAlbums] = album;
             this.numAlbums++;
             return true;
-        }
-        else if(numAlbums == albums.length){
+        } else if (numAlbums == albums.length) {
             this.grow();
             this.add(album);
         }
@@ -73,8 +61,8 @@ public class Collection {
 
     //
     public boolean remove(Album album) {
-        for(int i = 0; i < this.albums.length; i++){
-            if(albums[i].title == album.title && albums[i].astist == album.artist){
+        for (int i = 0; i < this.albums.length; i++) {
+            if (albums[i].title == album.title && albums[i].astist == album.artist) {
                 albums[i] = null;
                 return true;
             }
@@ -82,12 +70,15 @@ public class Collection {
         return false;
     }
 
-    //Jason
-
-    // set to not available
+    /**
+     * Finds album index in the collection of albums.
+     *
+     * @param album target album that wants to be found.
+     * @return index of album, otherwise -1 if not found.
+     */
     public boolean lendingOut(Album album) {
-        for (int i = 0; i < this.numAlbums; i++){
-            if (this.albums[i].equals(album)){
+        for (int i = 0; i < this.numAlbums; i++) {
+            if (this.albums[i].equals(album)) {
                 albums[i].setAvailability(false);
                 break;
             }
@@ -95,10 +86,10 @@ public class Collection {
         return;
     }
 
-    //set to available
+    // set to available
     public boolean returnAlbum(Album album) {
-        for (int i = 0; i < this.numAlbums; i++){
-            if (this.albums[i].equals(album)){
+        for (int i = 0; i < this.numAlbums; i++) {
+            if (this.albums[i].equals(album)) {
                 this.albums[i].setAvailability(true);
                 break;
             }
@@ -106,25 +97,24 @@ public class Collection {
         return;
     }
 
-    //John
+    // John
 
-    private void printOrder(){
-        for(int i = 0; i < this.albums.length; i++){
-            if(albums[i] != null){
-                System.out.println(albums[i].title + "::" + albums[i].artist + "::"
-                        + albums[i].genre + "::" + albums[i].releaseDate + "::" + albums[i].isAvailable);
+    private void printOrder() {
+        for (int i = 0; i < this.albums.length; i++) {
+            if (albums[i] != null) {
+                System.out.println(albums[i].title + "::" + albums[i].artist + "::" + albums[i].genre + "::"
+                        + albums[i].releaseDate + "::" + albums[i].isAvailable);
             }
         }
     }
+
     public void print() {
         System.out.println("*List of albums in the collection.");
         this.printOrder();
         System.out.println("*End of List");
     }
 
-
-
-    //SelectionSort
+    // SelectionSort
     public void printByReleaseDate() {
         int albumsLength = this.albums.length;
 
@@ -145,16 +135,13 @@ public class Collection {
         System.out.println("*End of List");
     }
 
-
-
     public void printByGenre() {
         int albumsLength = this.albums.length;
 
-        for (int i = 0; i < albumsLength-1; i++)
-        {
+        for (int i = 0; i < albumsLength - 1; i++) {
             int min_idx = i;
             for (int j = i + 1; j < albumsLength; j++)
-                if (albums[i].genre.toString().compareTo(albums[j].genre.toString()) >= 0){
+                if (albums[i].genre.toString().compareTo(albums[j].genre.toString()) >= 0) {
                     min_idex = j;
                 }
 
@@ -165,5 +152,43 @@ public class Collection {
         System.out.println("*List of albums in the collection by Genre.");
         this.printOrder();
         System.out.println("*End of List");
+    }
+
+    /**
+     * Retrieves the array of albums.
+     *
+     * @return array of albums.
+     */
+    public Album[] getCollection() {
+        return albums;
+    }
+
+    /**
+     * Retrieves the number of albums in array of albums.
+     *
+     * @return number of albums in array of albums.
+     */
+    public int getNumAlbums() {
+        return numAlbums;
+    }
+
+    /**
+     * Finds the album object in the array of albums given the title and artist of
+     * album.
+     *
+     * @param title  title of album
+     * @param artist name of the artist on the album.
+     * @return the target album if found, otherwise returns null.
+     */
+    public Album findAlbum(String title, String artist) {
+        Album wantedAlbum = new Album();
+        wantedAlbum.setArtist(artist);
+        wantedAlbum.setTitle(title);
+        for (int i = 0; i < numAlbums; i++) {
+            if (albums[i].equals(wantedAlbum)) {
+                return albums[i];
+            }
+        }
+        return null;
     }
 }
