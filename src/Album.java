@@ -1,3 +1,9 @@
+/**
+ * The Album class holds the information within the album and has methods to access or manipulate the data.
+ * Methods like equals() compare albums and toString() converts the album to a string format
+ * There are also getters and setters for Album's instance variables
+ * @author Jason Li, John Leng
+ */
 public class Album {
     private String title;
     private String artist;
@@ -5,19 +11,48 @@ public class Album {
     private Date releaseDate;
     private boolean isAvailable;
 
-    enum Genre {
-        Classical, Country, Jazz, Pop, Unknown
+
+    /**
+     * This constructor is the default one with no parameters.
+     * It only instantiates title, artist, genre, releaseDate, and isAvailable but
+     * gives them no values.
+     *
+     */
+    public Album(){
     }
 
-    // John
+    /**
+     * Constructor for Album that takes title, artist, genre, and release date in string format.
+     * The constructor converts the strings to the corresponding data values.
+     * @param title title of album
+     * @param artist artist of album
+     * @param genre genre of album
+     * @param releaseDate release date of album
+     */
+    public Album(String title, String artist, String genre, String releaseDate){
+        this.title = title;
+        this.artist = artist;
+        this.genre = Genre.valueOf(genre);
+        this.releaseDate = new Date(releaseDate);
+        this.isAvailable = true;
+    }
+
+    /**
+     * equals() takes an object and casts it to an Album, and returns true if the title and artist match.
+     * @param obj this is the inputted album.
+     * @return returns true if the title and artist are the same, else false
+     */
     @Override
     public boolean equals(Object obj) {
         Album album1 = (Album) obj;
         if (this.title == album1.title && this.artist == album1.artist) {
+
             return true;
         }
         return false;
     }
+
+
 
     /**
      * Shows a textual representation of album information.
