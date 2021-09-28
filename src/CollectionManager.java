@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 public class CollectionManager {
 
+
     /**
      * Takes in commands from the command line, and processes them to call methods from other classes.
      * Takes arguments Q, P, PD, PG, A, L, R, D
@@ -47,11 +48,13 @@ public class CollectionManager {
                 }
             }
             else {
+
                 System.out.println("Invalid command!");
             }
         }
         scanner.close();
     }
+
 
 
     /**
@@ -211,4 +214,5 @@ public class CollectionManager {
             delete(title, artist, collection);
         }
     }
+
 }

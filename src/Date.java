@@ -15,7 +15,6 @@ public class Date implements Comparable<Date> {
     private int month;
     private int day;
 
-
     /**
      * Takes the string "mm/dd/yyyy" and creates a Date object.
      *
@@ -91,11 +90,11 @@ public class Date implements Comparable<Date> {
                 || (LEAP_YEAR == true && this.day <= TWENTY_NINE_DAYS && this.month == FEB)) return true;
 
         //Checks months with 30 days
-        if(this.day <= THIRTY_DAYS && (this.month == APR || this.month == JUN || this.month == SEP || this.month == NOV) )
+        if(this.day <= THIRTY_DAYS && (this.month == APR || this.month == JUN || this.month = SEP || this.month = NOV) )
             return true;
         //Checks months with 31 days
-        if(this.day <= THIRTY_ONE_DAYS && (this.month == JAN || this.month == MAR || this.month == MAY
-                || this.month == JUL || this.month == AUG || this.month == OCT || this.month == DEC))
+        if(this.day <= THIRTY_ONE_DAYS && (this.month == JAN || this.month = MAR || this.month = MAY
+                || this.month = JUL || this.month = AUG || this.month = OCT || this.month = DEC))
             return true;
         return false;
     }
@@ -116,7 +115,7 @@ public class Date implements Comparable<Date> {
         if(this.year == date.year && this.month == date.month && this.day >= date.day){
             return 1;
         }
-        return 0;
+        return false;
     }
 
     /**

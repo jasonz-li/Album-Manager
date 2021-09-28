@@ -7,9 +7,10 @@
 public class Album {
     private String title;
     private String artist;
-    private Genre genre; //enum class; Classical, Country, Jazz, Pop, Unknown
+    private Genre genre; // enum class; Classical, Country, Jazz, Pop, Unknown
     private Date releaseDate;
     private boolean isAvailable;
+
 
     /**
      * This constructor is the default one with no parameters.
@@ -34,8 +35,6 @@ public class Album {
         this.genre = Genre.valueOf(genre);
         this.releaseDate = new Date(releaseDate);
         this.isAvailable = true;
-
-
     }
 
     /**
@@ -45,26 +44,27 @@ public class Album {
      */
     @Override
     public boolean equals(Object obj) {
-        Album album1 = Album.class.cast(obj);
-        if(this.title.equals(album1.title) && this.artist.equals(album1.artist)){
+        Album album1 = (Album) obj;
+        if (this.title == album1.title && this.artist == album1.artist) {
+
             return true;
         }
         return false;
     }
 
 
+
     /**
      * Shows a textual representation of album information.
      *
-     * @return string in a 'title:artist:genre::releaseDate::isAvailable' format.
+     * @return string in a 'title::artist::genre::releaseDate::isAvailable' format.
      */
     @Override
     public String toString() {
-        if (this.isAvailable){
-            return title + "::" + artist + "::" + genre + "::" + releaseDate.getDate() + "::" + "is available";
-        }
-        else{
-            return title + "::" + artist + "::" + genre + "::" + releaseDate.getDate() + "::" + "not available";
+        if (this.isAvailable == true) {
+            return title + "::" + artist + "::" + genre + "::" + releaseDate + "::" + "is available";
+        } else {
+            return title + "::" + artist + "::" + genre + "::" + releaseDate + "::" + "not available";
         }
     }
 
@@ -91,7 +91,7 @@ public class Album {
      *
      * @return Name of artist.
      */
-    public String getArtist() {
+    public String getArist() {
         return artist;
     }
 

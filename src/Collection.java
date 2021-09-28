@@ -9,7 +9,8 @@
 public class Collection {
 
     private Album[] albums;
-    private int numAlbums; //number of albums currently in the collection
+    private int numAlbums; // number of albums currently in the collection
+
 
 
     /**
@@ -38,31 +39,39 @@ public class Collection {
 
     /**
      * Increases the capacity of the array list by 4.
+     * Finds album index in the collection of albums.
+     *
+     * @param album target album that wants to be found.
+     * @return index of album, otherwise -1 if not found.
      */
     private void grow() {
         Album[] newCollection = new Album[this.numAlbums + 4];
-        for (int i = 0; i < this.numAlbums; i++){
+        for (int i = 0; i < this.numAlbums; i++) {
             newCollection[i] = this.albums[i];
         }
         this.albums = newCollection;
     }
 
     /**
-     * Attempts to add an album and calls grow when it is full:
-     * If the number of albums is less than the array length, the album is added,
-     * or if the number of albums is equal to the array length, it calls grow()
-     * and recursively attempts to add the album again.
-     * @param album the album that is added to the list
-     * @return returns true if its added, false if it is not added
+     * Attempts to add an album and calls grow when its full: If the number of
+     * albums is less than the array length, the album is added, or if the number of
+     * albums is equal to the array length, it calls grow() and recursively attempts
+     * to add the album again.
+     *
+     * @param album
+     * @return
      */
     public boolean add(Album album) {
-        if(numAlbums < albums.length) {
+        if (numAlbums < albums.length) {
             this.albums[numAlbums] = album;
             this.numAlbums++;
             if(numAlbums == albums.length){
                 this.grow();
             }
             return true;
+        } else if (numAlbums == albums.length) {
+            this.grow();
+            this.add(album);
         }
         return false;
     }
@@ -74,6 +83,7 @@ public class Collection {
      * @return true when the album is removed.
      */
     public boolean remove(Album album) {
+
         Album[] temp = new Album[numAlbums];
         boolean check = false;
         int j = 0;
@@ -94,7 +104,6 @@ public class Collection {
         this.numAlbums--;
         return true;
     }
-
 
 
     /**
@@ -118,7 +127,7 @@ public class Collection {
                 }
             }
         }
-        return false;
+        return;
     }
 
     /**
@@ -137,11 +146,12 @@ public class Collection {
             if (this.albums[i].equals(album)){
                 System.out.println(album.getTitle() + "::" + album.getArtist() + " >> returning and set to available.");
                 this.albums[i].setAvailability(true);
-                return true;
+                break;
             }
         }
-        return false;
+        return;
     }
+
 
 
     /**
@@ -151,6 +161,7 @@ public class Collection {
         for(int i = 0; i < this.albums.length; i++){
             if(albums[i] != null){
                 System.out.println(albums[i].toString());
+
             }
         }
     }
@@ -180,7 +191,8 @@ public class Collection {
                     min_idx = j;
                 }
 
-            Album tempVar = albums[min_idx];
+
+            int tempVar = albums[min_idx];
             albums[min_idx] = albums[i];
             albums[i] = tempVar;
         }
@@ -190,6 +202,7 @@ public class Collection {
     }
 
 
+
     /**
      * Sorts the albums by genre chronologically and prints the albums.
      * Utilizes selection sort
@@ -197,15 +210,14 @@ public class Collection {
     public void printByGenre() {
         int albumsLength = this.numAlbums;
 
-        for (int i = 0; i < albumsLength-1; i++)
-        {
+        for (int i = 0; i < albumsLength - 1; i++) {
             int min_idx = i;
             for (int j = i + 1; j < albumsLength; j++)
                 if (albums[min_idx].getGenre().toString().compareTo(albums[j].getGenre().toString()) >= 0){
                     min_idx = j;
                 }
 
-            Album tempVar = albums[min_idx];
+            int tempVar = albums[min_idx];
             albums[min_idx] = albums[i];
             albums[i] = tempVar;
         }
@@ -249,6 +261,7 @@ public class Collection {
                 if (albums[i].equals(wantedAlbum)) {
                     return albums[i];
                 }
+
             }
         }
         return null;
